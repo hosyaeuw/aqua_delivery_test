@@ -1,0 +1,65 @@
+$base: 4px;
+
+.auth {
+    min-height: $base * 92;
+    width: $base * 102;
+    padding: $base * 7 $base * 8;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.0001);
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.06);
+
+    &__banner-wrapper,
+    h1 {
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: $base * 8;
+    }
+
+    .form {
+        &__field {
+            margin-bottom: $base * 5;
+
+            &_checkbox {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+
+    .label {
+        display: inline-block;
+        font-size: 13px;
+        line-height: 18px;
+        color: #6E6B7B;
+        user-select: none;
+        margin-left: $base * 2;
+
+        &_input {
+            margin-bottom: $base;
+        }
+    }
+
+    .input {
+        height: $base * 9;
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid #D8D6DE;
+        padding: $base * 4 $base * 13 $base * 4 $base * 2;
+        box-sizing: border-box;
+
+        &::placeholder {
+            font-size: 14px;
+            opacity: .6;
+        }
+
+        &_password {
+            font-size: 24px;
+        }
+
+        &_error {
+            border: 1px solid red;
+        }
+    }
+}

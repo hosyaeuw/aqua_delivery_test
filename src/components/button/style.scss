@@ -1,0 +1,29 @@
+$base: 4px;
+$color: #7367F0;
+$disabledColor: grey;
+
+.btn {
+    height: $base * 9;
+    width: 100%;
+    border-radius: 5px;
+    background: $color;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        background: darken($color, 10%);
+    }
+
+    &:active {
+        background: darken($color, 15%);
+    }
+
+    &_disabled {
+        background: $disabledColor;
+
+        &:hover{
+            background: $disabledColor;
+        }
+    }
+}

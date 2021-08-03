@@ -1,0 +1,27 @@
+$base: 4px;
+
+.chat {
+    height: 80vh;
+    width: $base * 213;
+    box-sizing: border-box;
+    overflow-y: auto;
+    padding: $base * 7 $base * 12;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.0001);
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column-reverse;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #B7BDCB;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+}

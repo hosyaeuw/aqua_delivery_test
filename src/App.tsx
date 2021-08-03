@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { AuthLoader, ChatLoader } from './pages'
+
+import { getToken } from './utils/utils'
+
+import './style.scss'
+
+const Chat = React.lazy(() => import('./pages/chat/Chat'));
+const Auth = React.lazy(() => import('./pages/auth/Auth'));
+
+const App = () => {
+    const token = getToken()
+
+    const routeGuard = (from: React.ReactNode, to: React.ReactNode) => !!token ? from : to
+
+    return (
+        <div className="root-container">
+            <Switch>
+                <Route path="/" render={() => routeGuard(
+                    <React.Suspense fallback={<ChatLoader />}>
+                        <Chat />
+                    </React.Suspense>,
+                    <Redirect to='/auth/' />)} exact
+                />
+                <Route path="/auth" render={() => routeGuard(
+                    <Redirect to='/' />,
+                    <React.Suspense fallback={<AuthLoader />}>
+                        <Auth />
+                    </React.Suspense>
+                )} exact
+                />
+            </Switch>
+        </div>
+    )
 }
 
 export default App;
