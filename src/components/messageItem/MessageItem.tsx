@@ -10,13 +10,24 @@ interface IMessageItemProps {
     photo: string
 }
 
-
-const MessageItem: React.FC<IMessageItemProps> = ({ message, deleteHandler = () => {}, photo = 'default' }) => {
+const MessageItem: React.FC<IMessageItemProps> = ({ message, deleteHandler = () => { }, photo = 'default' }) => {
     const [showMenu, setShowMenu] = React.useState<boolean>(false)
+    const menuRef = React.useRef(null)
 
     const toggleShowMenu = (): void => {
+        if (!showMenu) {
+            document.body.addEventListener('click', handleOutsideClick);
+        }
         setShowMenu(prev => !prev)
     }
+
+    const handleOutsideClick = (e: any) => {
+        const path = e.path || (e.composedPath && e.composedPath());
+        if (!path.includes(menuRef.current)) {
+            setShowMenu(false);
+            document.body.removeEventListener('click', handleOutsideClick)
+        }
+    };
 
     return (
         <div className="message-wrapper">
@@ -38,7 +49,7 @@ const MessageItem: React.FC<IMessageItemProps> = ({ message, deleteHandler = () 
                                     </svg>
                                 </button>
                                 {showMenu &&
-                                    <div className="message__use__menu">
+                                    <div className="message__use__menu" ref={menuRef}>
                                         <div className="message__use__menu__item" onClick={deleteHandler}>Удалить</div>
                                     </div>
                                 }

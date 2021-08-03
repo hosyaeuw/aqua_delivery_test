@@ -1,5 +1,5 @@
 import React from 'react'
-import { map, filter, range, divide } from 'lodash'
+import { map, filter, range } from 'lodash'
 
 import { MessageItem, MessageItemLoader } from '../../components'
 
@@ -28,7 +28,7 @@ const Chat: React.FC = () => {
     return (
         <div className="chat">
             {!messagesLoaded ?
-                map(range(8), () => <MessageItemLoader />) :
+                map(range(8), (number) => <MessageItemLoader key={number} />) :
                 map(messages, message => (
                     <MessageItem deleteHandler={() => deleteHandler(message.id)} key={message.id} photo={logo} message={message} />
                 ))
