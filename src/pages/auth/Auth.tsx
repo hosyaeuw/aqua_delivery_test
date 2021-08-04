@@ -40,13 +40,13 @@ const Auth: React.FC = () => {
                         <div className="form__field">
                             <label className="label label_input" htmlFor="login">Логин</label>
                             <Field name="login" initialValue="">
-                                {({ input }) => <input className="input" type="text" placeholder="Введите логин" id="login" {...input} />}
+                                {({ input }) => <input required className="input" type="text" placeholder="Введите логин" id="login" {...input} />}
                             </Field>
                         </div>
                         <div className="form__field">
                             <label className="label label_input" htmlFor="password">Пароль</label>
                             <Field name="password" initialValue="">
-                                {({ input }) => <input className="input input_password" type="password" placeholder="Введите пароль" id="password" {...input} />}
+                                {({ input }) => <input required className="input input_password" type="password" placeholder="Введите пароль" id="password" {...input} />}
                             </Field>
                         </div>
                         <div className="form__field form__field_checkbox">
