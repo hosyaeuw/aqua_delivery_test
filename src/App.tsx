@@ -1,9 +1,7 @@
 import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 import { AuthLoader, ChatLoader } from './pages'
-
-import { getToken } from './utils/utils'
 
 import './style.scss'
 
@@ -11,21 +9,16 @@ const Chat = React.lazy(() => import('./pages/chat/Chat'));
 const Auth = React.lazy(() => import('./pages/auth/Auth'));
 
 const App = () => {
-    const token = getToken()
-
-    const routeGuard = (from: React.ReactNode, to: React.ReactNode) => !!token ? from : to
 
     return (
         <div className="root-container">
             <Switch>
-                <Route path="/" render={() => routeGuard(
+                <Route path="/" render={() => (
                     <React.Suspense fallback={<ChatLoader />}>
                         <Chat />
-                    </React.Suspense>,
-                    <Redirect to='/auth/' />)} exact
+                    </React.Suspense>)} exact
                 />
-                <Route path="/auth" render={() => routeGuard(
-                    <Redirect to='/' />,
+                <Route path="/auth" render={() => (
                     <React.Suspense fallback={<AuthLoader />}>
                         <Auth />
                     </React.Suspense>

@@ -10,7 +10,6 @@ interface IButtonProps {
 }
 
 const Button: React.FC<IButtonProps> = ({ children, onClick = () => { }, disabled = false }) => {
-    console.log(disabled)
     return (
         <button className={cn("btn", {btn_disabled: disabled})} onClick={onClick}>
             {children}
